@@ -60,7 +60,7 @@ while True:
         building = True
         clip = copy(video_buffer.q)
         video_buffer.clear()
-    elif building and datetime.now() >= last_weight_event + timedelta(0, TIMEOUT):
+    elif building and datetime.now() >= last_weight_event + timedelta(seconds=TIMEOUT):
         frames = list(clip)
 
         clip = None

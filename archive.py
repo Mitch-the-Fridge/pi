@@ -45,7 +45,7 @@ def create_from_clip(clip):
 
         i = 0
         for frame in clip:
-            fname = os.path.join(tmpdir, str(i).rjust(10, '0') + ".jpg")
+            fname = os.path.join(tmpdir, "{:010}.jpg".format(i))
             cv2.imwrite(fname, frame['frame'])
             i += 1
 
@@ -67,8 +67,8 @@ last_try_time = datetime.fromtimestamp(0) # start with low value
 def try_upload_buffer():
     global last_try_time, n_tries
 
-    backoff = max(2**n_tries, 60*10) # max backoff of 10 minutes
-    if datetime.now() < last_try_time + timedelta(0, backoff):
+    backoff = min(2**n_tries, 60*10) # max backoff of 10 minutes
+    if datetime.now() < last_try_time + timedelta(seconds=backoff):
         # too soon
         return
 
