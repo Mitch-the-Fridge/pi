@@ -67,7 +67,7 @@ last_try_time = datetime.fromtimestamp(0) # start with low value
 def try_upload_buffer():
     global last_try_time, n_tries
 
-    backoff = max(2**n_tries, 60*10) # max backoff of 10 minutes
+    backoff = min(2**n_tries, 60*10) # max backoff of 10 minutes
     if datetime.now() < last_try_time + timedelta(seconds=backoff):
         # too soon
         return
