@@ -33,7 +33,7 @@ def create_from_clip(clip):
     for frame in clip:
         info_dict['frames'].append({
             'time': round(frame['time'].timestamp() * 1e3),
-            'face_locations': frame['face_locations'],
+            #'face_locations': frame['face_locations'],
             'current_weight': frame['current_weight'],
         })
 

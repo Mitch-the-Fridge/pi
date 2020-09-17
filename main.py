@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-#import face_recognition
+import face_recognition
 import cv2
 import numpy as np
 from datetime import datetime, timedelta
@@ -37,12 +37,15 @@ while True:
     ret, frame = cap.read()
     rgb_frame = cv2.resize(frame, (0, 0), fx=.5, fy=.5)[:, :, ::-1]
 
-    #face_locations = face_recognition.face_locations(rgb_frame)
+    # TEMP:
+    face_locations = face_recognition.face_locations(rgb_frame)
+    enough_diff = len(face_locations) > 0
+
     print(
         len(video_buffer.q),
         len(clip) if clip is not None else 0,
         building,
-        #face_locations
+        face_locations
     )
 
     point = {
