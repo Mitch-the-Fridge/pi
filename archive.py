@@ -12,8 +12,8 @@ from datetime import datetime, timedelta
 # holds information about items on disk
 disk_queue = deque()
 
-# hold 20 clips at max in /dev/shm
-cache_buffer = Buffer(20, lambda clip: move_to_storage(clip))
+# hold 5 clips at max in /dev/shm
+cache_buffer = Buffer(5, lambda clip: move_to_storage(clip))
 
 def move_to_storage(clip):
     dir_path = os.path.expanduser("~/.beer_clips")
